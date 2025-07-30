@@ -1,24 +1,34 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
-require('dotenv').config();
+import express from 'express';
+import cors from 'cors';
+import 'dotenv/config';
+import cookieParser from 'cookie-parser';
+
+import connectDB from './config/mongodb.js';
+import authRouter from './routes/authRoutes.js';
+import userRouter from './routes/userRoutes.js';
 
 const app = express();
-app.use(cors());
+const PORT = process.env.PORT || 4000;
+connectDB();
+
+const allowedOrigins = ['http://localhost:5173'];
+
 app.use(express.json());
+app.use(cookieParser());
+app.use(cors({origin: allowedOrigins, credentials: true}));
 
-mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log("✅ MongoDB Connected"))
-  .catch(err => console.error(err));
-
-const authenticate = require('./middlewares/authenticate');
-
-app.get('/api/protected', authenticate, (req, res) => {
-  res.json({ message: 'This is protected data', user: req.user });
+app.get('/ping', (req, res) => {
+  console.log("Ping received");
+  res.send("Server is running");
 });
+//API Endpoints
+app.get('/', (req, res) => res.send('Welcome to ReUseMart Server !'));
+app.use('/api/auth', authRouter);
+app.use('/api/user', userRouter);
 
 
-const authRoutes = require('./routes/auth');
-app.use('/api/auth', authRoutes);
 
-app.listen(5000, () => console.log("✅ Server running at http://localhost:5000"));
+
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
