@@ -1,0 +1,8 @@
+.home {
+  padding: 2rem 1rem;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #ffffff;
+  font-family: "Segoe UI", sans-serif;
+  box-sizing: border-box;
+}

@@ -1,0 +1,67 @@
+.add-item-form {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 40px;
+  background-color: #fdfdfd;
+  border-radius: 30px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  font-family: "Segoe UI", sans-serif;
+}
+
+.add-item-form h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 1.8rem;
+  color: #111;
+}
+
+.add-item-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.add-item-form input,
+.add-item-form select,
+.add-item-form textarea {
+  padding: 12px 15px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.add-item-form input:focus,
+.add-item-form select:focus,
+.add-item-form textarea:focus {
+  outline: none;
+  border-color: #000;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+.add-item-form textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.add-item-form button[type="submit"] {
+  
+  text-align: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background-color: transparent;
+  border: 1px solid #d1d5db;
+  border-radius: 25px;
+  color: #2c3e50;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.add-item-form button[type="submit"]:hover {
+  background-color: #f5f7fa;
+  border-color: #9ca3af;
+  transform: translateY(-1px);
+}
