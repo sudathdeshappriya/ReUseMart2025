@@ -6,6 +6,8 @@ import EmailVerify from './pages/EmailVerify'
 import ResetPassword from './pages/ResetPassword'
 import { ToastContainer } from 'react-toastify'
 import AddItemForm from './pages/additem'
+import ViewItem from './pages/ItemView'
+
 
 const App = () => {
   return (
@@ -17,6 +19,9 @@ const App = () => {
         <Route path="/email-verify" element={<EmailVerify />} />
         <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/add-item" element={<AddItemForm />} />
+        <Route path="/items/:id" element={<ViewItem />} />
+    
+    
       </Routes>
     </div>
   )
