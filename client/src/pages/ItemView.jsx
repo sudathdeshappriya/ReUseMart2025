@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { use, useContext, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import "../css/ViewItem.css"; // Assuming you have a CSS file for styling
 import { AppContent } from "../context/AppContext";
 
@@ -8,6 +8,7 @@ const ViewItem = () => {
   const [item, setItem] = useState(null);
   const [error, setError] = useState(null);
   const { userData } = useContext(AppContent)
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch(`http://localhost:4000/api/items/${id}`)
@@ -27,6 +28,7 @@ const ViewItem = () => {
 
   return (
     <div className="item-view">
+      <button className="close-btn" onClick={() => navigate(-1)}>✖</button>
       <div className="item-image">
         <img src={`http://localhost:4000/${item.imageUrl}`} alt={item.itemName} />
       </div>

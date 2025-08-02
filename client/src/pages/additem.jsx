@@ -73,6 +73,7 @@ function AddItemForm() {
 
     return (
         <div className="add-item-form">
+            <button className="close-btn" onClick={() => navigate(-1)}>✖</button>
             <h2>Add E-Waste Item</h2>
             <form onSubmit={handleSubmit} encType="multipart/form-data">
                 <input type="text" name="itemName" placeholder="Item Name" value={formData.itemName} onChange={handleChange} required /><br />
