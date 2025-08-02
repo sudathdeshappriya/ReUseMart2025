@@ -10,6 +10,7 @@ const Navbar = () => {
     const [searchQuery, setSearchQuery] = useState("");
     const navigate = useNavigate();
     const { userData, backendUrl, setUserData, setIsLoggedin } = useContext(AppContent);
+    
 
     const handleSearch = (e) => {
         e.preventDefault();
@@ -49,6 +50,7 @@ const Navbar = () => {
         <div className="navbar-container">
             <div className="navbar">
                 <form onSubmit={handleSearch} className="search-form">
+                    { userData && userData.role === 'user' && (
                     <button 
                         type="button" 
                         className="add-item" 
@@ -56,6 +58,7 @@ const Navbar = () => {
                     >
                         Add Item
                     </button>
+                    )}
                     <input
                         type="text"
                         placeholder="Search Items..."
@@ -64,6 +67,7 @@ const Navbar = () => {
                         onChange={(e) => setSearchQuery(e.target.value.toLowerCase())}
                     />
                     <button type="submit" className="search-item">Search</button>
+                    
                 </form>
 
                 <img src={assets.logo} alt="Logo" className="navbar-logo" />
