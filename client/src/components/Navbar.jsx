@@ -74,7 +74,7 @@ const Navbar = () => {
     };
 
     return (
-
+        <>
         <div className="navbar-containerx">
             <div className="navbarx">
                 <form onSubmit={handleSearch} className="search-formx">
@@ -107,16 +107,18 @@ const Navbar = () => {
                         {userData.name[0].toUpperCase()}
                         <div className="user-menux">
                             <ul className="menu-listx">
-                                {!userData.isAccountVerified && (
+                                {!userData.isAccountVerified && 
                                     <li onClick={sendVerificationOtp} className={`menu-itemx ${isClicked ? 'disabled' : ''}`}>
                                         Verify email
+                                    </li>
+                                    }
                                     <li onClick={logout} className="menu-itemx">
                                         Logout
 
                                     </li>
-                                </ul>
-                            </div>
+                            </ul>
                         </div>
+                    </div>
                     ) : (
                         <button onClick={() => navigate('/login')} className="login-buttonx">
                             Login
