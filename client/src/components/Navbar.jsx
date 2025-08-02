@@ -19,28 +19,31 @@ const Navbar = () => {
     
 
     const handleSearch = async (e) => {
-  e.preventDefault();
+        //alert(searchQuery) ;
+        setLoading(true);
+                e.preventDefault();
 
-  if (!searchQuery.trim()) return;
+            if (!searchQuery.trim()) return;
 
-  try {
-    const response = await axios.get(`${backendUrl}/api/items/search?q=${searchQuery}`);
-    
-    if (Array.isArray(response.data)) {
-      setSearchResults(response.data); // Should be rendered as <ItemCard item={item} />
-    } else {
-      toast.error("Invalid response format.");
-    }
-  } catch (error) {
-    console.error("Search error:", error);
-    toast.error("Failed to fetch search results.");
-  
+            try {
+                console.log("Searching for:", searchQuery);
+                const response = await axios.get(`${backendUrl}/api/items/search?q=${searchQuery}`);
+                
+                if (Array.isArray(response.data)) {
+                setSearchResults(response.data); // Should be rendered as <ItemCard item={item} />
+                } else {
+                toast.error("Invalid response format.");
+                }
+            } catch (error) {
+                console.error("Search error:", error);
+                toast.error("Failed to fetch search results.");
+            
 
-        } finally {
-            setLoading(false);
-        }
+                    } finally {
+                        setLoading(false);
+                    }
 
-        setSearchQuery("");
+                    setSearchQuery("");
     };
 
     const sendVerificationOtp = async () => {
@@ -137,7 +140,11 @@ const Navbar = () => {
                 {!loading && !error && searchResults.length > 0 && (
                     <div className="item-cards-wrapperx">
                         {searchResults.map((item) => (
-                            <ItemCard key={item._id} item={item} />
+                            <ItemCard key={item._id} item={{
+                  _id: item._id, 
+                  title: item.itemName,price:item.price,
+                  url: `http://localhost:4000/${item.imageUrl}`,
+                }} />
                         ))}
                     </div>
                 )}
