@@ -14,7 +14,9 @@ const Navbar = () => {
     const [error, setError] = useState(null);
 
     const navigate = useNavigate();
+    const [isClicked, setIsClicked] = useState(false);
     const { userData, backendUrl, setUserData, setIsLoggedin } = useContext(AppContent);
+    
 
     const handleSearch = async (e) => {
   e.preventDefault();
@@ -42,6 +44,7 @@ const Navbar = () => {
     };
 
     const sendVerificationOtp = async () => {
+        setIsClicked(true);
         try {
             axios.defaults.withCredentials = true;
             const { data } = await axios.post(backendUrl + '/api/auth/send-verify-otp');
@@ -71,41 +74,45 @@ const Navbar = () => {
     };
 
     return (
-        <>
-            <div className="navbar-containerx">
-                <div className="navbarx">
-                    <form onSubmit={handleSearch} className="search-formx">
-                        <button 
-                            type="button" 
-                            className="add-itemx" 
-                            onClick={() => navigate('/add-item')}
-                        >
-                            Add Item
-                        </button>
-                        <input
-                            type="text"
-                            placeholder="Search Items..."
-                            className="search-inputx"
-                            value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)}
-                        />
-                        <button type="submit" className="search-itemx">Search</button>
-                    </form>
+
+        <div className="navbar-containerx">
+            <div className="navbarx">
+                <form onSubmit={handleSearch} className="search-formx">
+                    { userData && userData.role === 'user' && (
+                    <button 
+                        type="button" 
+                        className="add-itemx" 
+                        onClick={() => { userData.isAccountVerified ? navigate('/add-item'):toast.warn("Please verify your email to add items") }} 
+                    >
+                        Add Item
+                    </button>
+                    )}
+                    <input
+                        type="text"
+                        placeholder="Search Items..."
+                        className="search-inputx"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value.toLowerCase())}
+                    />
+                    <button type="submit" className="search-itemx">Search</button>
+                    
+                </form>
+
 
                     <img src={assets.logo} alt="Logo" className="navbar-logox" />
 
-                    {userData ? (
-                        <div className="user-avatarx">
-                            {userData.name[0].toUpperCase()}
-                            <div className="user-menux">
-                                <ul className="menu-listx">
-                                    {!userData.isAccountVerified && (
-                                        <li onClick={sendVerificationOtp} className="menu-itemx">
-                                            Verify email
-                                        </li>
-                                    )}
+
+                {userData ? (
+                    <div className="user-avatarx">
+                        {userData.name[0].toUpperCase()}
+                        <div className="user-menux">
+                            <ul className="menu-listx">
+                                {!userData.isAccountVerified && (
+                                    <li onClick={sendVerificationOtp} className={`menu-itemx ${isClicked ? 'disabled' : ''}`}>
+                                        Verify email
                                     <li onClick={logout} className="menu-itemx">
                                         Logout
+
                                     </li>
                                 </ul>
                             </div>

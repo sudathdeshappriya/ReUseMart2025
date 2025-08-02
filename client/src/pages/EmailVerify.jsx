@@ -8,9 +8,12 @@ import '../css/EmailVerify.css';
 
 const EmailVerify = () => {
   axios.defaults.withCredentials = true;
-  const { backendUrl, isLoggedin, userData, getUserData } = useContext(AppContent);
+
+  const {backendUrl,setIsLoggedin,isLoggedin,userData, getUserData} = useContext(AppContent);
+
   const navigate = useNavigate();
   const inputRefs = React.useRef([]);
+
 
   const handleInput = (e, index) => {
     if (e.target.value.length > 0 && index < inputRefs.current.length - 1) {
@@ -37,17 +40,18 @@ const EmailVerify = () => {
   const onSubmitHandler = async (e) => {
     try {
       e.preventDefault();
-      const otpArray = inputRefs.current.map((e) => e.value);
-      const otp = otpArray.join('');
-      const { data } = await axios.post(backendUrl + '/api/auth/verify-account', { otp });
 
-      if (data.success) {
-        toast.success(data.message);
-        getUserData();
-        isLoggedin(true);
-        navigate('/');
-      } else {
-        toast.error(data.message);
+      const otpArray = inputRefs.current.map((e) => e.value)
+      const otp = otpArray.join('')
+      const {data} = await axios.post(backendUrl + '/api/auth/verify-account', {otp})
+      if(data.success){
+        toast.success(data.message)
+        getUserData()
+        setIsLoggedin(true)
+        navigate('/')
+      }else{
+        toast.error(data.message)
+
       }
     } catch (error) {
       toast.error(error.message);
@@ -87,7 +91,10 @@ const EmailVerify = () => {
               />
             ))}
         </div>
-        <button className="verify-button">Verify email</button>
+
+        <button className='verify-button'>Verify email</button>
+
+
       </form>
     </div>
   );

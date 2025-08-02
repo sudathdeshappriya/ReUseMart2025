@@ -14,6 +14,7 @@ async function userAuth(req, res, next) {
         if (tokenDecode.id) {
             req.body = req.body || {}; 
             req.body.userId = tokenDecode.id;
+            req.body.role = tokenDecode.role;
             //console.log("User ID from token:", req.body.userId);
         } else {
             //console.log("Token decode failed");

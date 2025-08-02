@@ -97,9 +97,9 @@ const Login = () => {
             Forgot password?
           </p>
 
-          <button className="login-button" type="submit">
-            {state}
-          </button>
+
+            <button className="login-button"type= "submit">{state}</button>
+
         </form>
 
         {state === 'Sign Up' ? (
