@@ -42,10 +42,12 @@ const ViewItem = () => {
         <p><strong className="location">Location:</strong> {item.location}</p>
         <p><strong className="condition">Condition:</strong> {item.condition}</p>
         <div className="item-actions">
-{ userData && userData.role === 'user' ? (
+{ userData && userData.role === 'user' && (
                     <button className="favourite-btn" onClick={() => alert("Added to favourites!")}>Add to Favourites</button>
-                    ):(<button className="delete-btn" onClick={() => alert("Item is deleted!")}>Delete Item</button>)}
-
+                    )}
+{ userData && userData.role === 'admin' && (
+                    <button className="delete-btn" onClick={() => alert("Item is deleted!")}>Delete Item</button>
+                    )}
 
 
 
