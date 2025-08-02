@@ -1,0 +1,157 @@
+/* ViewItem.css - eBay-like Item View Styling */
+
+/* Main Container */
+.item-view {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  font-family: Arial, sans-serif;
+}
+
+/* Item Image Section */
+.item-image {
+  background: #f7f7f7;
+  padding: 1rem;
+  border: 1px solid #e1e1e1;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 500px;
+}
+
+.item-image img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+}
+
+/* Item Details Section */
+.item-details {
+  width: 550px;
+  margin-right:40px;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  font-family: Arial, sans-serif;
+}
+
+.item-details h2 {
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+.item-details p {
+  margin: 0.8rem 0;
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.5;
+  margin-left: 20px;
+
+}
+
+.item-details strong {
+  color: #333;
+  font-weight: 600;
+  min-width: 100px;
+  display: inline-block;
+  margin-left: 20px;
+}
+
+/* Price Styling */
+.price {
+    text-indent: 40px;
+  font-size: 1.8rem !important;
+  color: #B12704 !important;
+  font-weight: 700 !important;
+  margin: 3rem 0 !important;
+
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e1e1e1;
+}
+
+/* Description Section */
+.item-description {
+  grid-column: 1 / -1;
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: #f9f9f9;
+  border-radius: 4px;
+  border: 1px solid #e1e1e1;
+}
+
+.item-description h3 {
+  font-size: 1.3rem;
+  color: #333;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #e1e1e1;
+}
+
+/* Action Buttons */
+.item-actions {
+  grid-column: 2;
+  margin-top: 1.5rem;
+}
+
+.favourite-btn {
+  background: #fff;
+  color: #0654ba;
+  border: 1px solid #0654ba;
+  font-size: 1rem;
+  border-radius: 4px;
+  margin-top: 20px;
+  margin-left: 60px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  width: 400px;
+  height: 40px;
+
+}
+
+.favourite-btn:hover {
+  background: #f0f7ff;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .item-view {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
+  
+  .item-image {
+    height: 300px;
+  }
+  
+  .item-actions {
+    grid-column: 1;
+  }
+}
+
+/* Error and Loading States */
+.error-message {
+  color: #d32f2f;
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.2rem;
+}
+
+.loading-message {
+  text-align: center;
+  padding: 2rem;
+  color: #555;
+  font-size: 1.2rem;
+}

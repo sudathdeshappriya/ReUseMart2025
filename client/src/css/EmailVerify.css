@@ -1,0 +1,151 @@
+/* EmailVerify.css - OTP Verification Styling */
+
+.email-verify-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: rgb(219, 219, 219);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 2rem;
+}
+
+.email-verify-logo {
+  width: 220px;
+  margin-bottom: 2rem;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.email-verify-logo:hover {
+  transform: scale(1.05);
+}
+
+.email-verify-form {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.email-verify-title {
+  font-size: 1.8rem;
+  color: #2d3748;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.email-verify-subtext {
+  color: #718096;
+  margin-bottom: 2rem;
+  font-size: 0.95rem;
+ 
+}
+
+.otp-input-group {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+  gap: 0.75rem;
+  
+
+}
+
+.otp-input {
+  width: 3rem;
+  height: 3.5rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 1.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  margin-left: -4px;
+  
+}
+
+.otp-input:focus {
+  border-color: #4299e1;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.2);
+  transform: translateY(-2px);
+ 
+}
+
+.verify-button {
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.verify-button:hover {
+  background: linear-gradient(135deg, #3182ce 0%, #2b6cb0 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Resend Link */
+.resend-link {
+  display: inline-block;
+  margin-top: 1.5rem;
+  color: #4299e1;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.resend-link:hover {
+  color: #3182ce;
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .email-verify-container {
+    padding: 1.5rem;
+  }
+  
+  .email-verify-form {
+    padding: 2rem 1.5rem;
+  }
+  
+  .email-verify-title {
+    font-size: 1.5rem;
+  }
+  
+  .otp-input {
+    width: 2.5rem;
+    height: 3rem;
+    font-size: 1.2rem;
+  }
+}
+
+/* Error States */
+.otp-input-error {
+  border-color: #e53e3e !important;
+  background-color: #fff5f5 !important;
+  animation: shake 0.5s ease-in-out;
+}
+
+.error-message {
+  color: #e53e3e;
+  font-size: 0.8rem;
+  margin: -1rem 0 1.5rem;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-5px); }
+  40%, 80% { transform: translateX(5px); }
+}

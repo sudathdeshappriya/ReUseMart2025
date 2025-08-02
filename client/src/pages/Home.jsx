@@ -4,15 +4,25 @@ import ItemCard from "./item";
 import "../css/Home.css";
 
 const Home = () => {
-  const [searchQuery, setSearchQuery] = useState("");
+  
   const [items, setItems] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+
+
+
+  
 
   // Fetch items from backend on page load
   useEffect(() => {
-    fetch("http://localhost:4000/api/items") 
+    fetch("http://localhost:4000/api/items")
       .then((res) => res.json())
       .then((data) => {
+        console.log("Fetched items:", data);
         setItems(data);
+        
+
+
+        
       })
       .catch((err) => {
         console.error("Error fetching items:", err);
@@ -35,7 +45,8 @@ const Home = () => {
               <ItemCard
                 key={item._id}
                 item={{
-                  title: item.itemName,
+                  _id: item._id, 
+                  title: item.itemName,price:item.price,
                   url: `http://localhost:4000/${item.imageUrl}`,
                 }}
               />
