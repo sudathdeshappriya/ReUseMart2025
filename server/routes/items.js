@@ -16,6 +16,18 @@ router.get('/items', getAllItems);
 
 
 
+router.delete("/delete-item/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    await Item.findByIdAndDelete(id);
+    res.status(200).json({ message: "Item deleted successfully" });
+  } catch (err) {
+    console.error("Delete error:", err);
+    res.status(500).json({ message: "Server error" });
+  }
+});
+
+
 
 // routes/items.js or wherever you define it
 router.get('/search', async (req, res) => {
