@@ -1,10 +1,11 @@
 import React, { use, useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import "../css/ViewItem.css"; // Assuming you have a CSS file for styling
+import "../css/ViewItem.css"; 
 import { AppContent } from "../context/AppContext";
+import { toast } from "react-toastify";
 
 const ViewItem = () => {
-  const { id } = useParams(); // 🔍 extract item ID from URL
+  const { id } = useParams(); 
   const [item, setItem] = useState(null);
   const [error, setError] = useState(null);
   const { userData } = useContext(AppContent)
@@ -27,6 +28,26 @@ const ViewItem = () => {
   if (!item) return <p>Loading...</p>;
 
   console.log("Fetched Item:", item.imageUrl);
+const deleteItem = async (itemId) => {
+  try {
+    const response = await fetch(`http://localhost:4000/api/delete-item/${itemId}`, {
+      method: "DELETE",
+      credentials: 'include'
+    });
+
+    const result = await response.json();
+    if (response.ok) {
+      toast.success("Item deleted successfully!");
+      navigate(-1);
+      
+    } else {
+      toast.error(result.message || "Failed to delete item.");
+    }
+  } catch (error) {
+    console.error("Delete error:", error);
+    toast.error("An error occurred while deleting the item.");
+  }
+};
 
   return (
     <div className="item-view">
@@ -42,11 +63,11 @@ const ViewItem = () => {
         <p><strong className="location">Location:</strong> {item.location}</p>
         <p><strong className="condition">Condition:</strong> {item.condition}</p>
         <div className="item-actions">
-{ userData && userData.role === 'user' && (
+        { userData && userData.role === 'user' && (
                     <button className="favourite-btn" onClick={() => alert("Added to favourites!")}>Add to Favourites</button>
                     )}
-{ userData && userData.role === 'admin' && (
-                    <button className="delete-btn" onClick={() => alert("Item is deleted!")}>Delete Item</button>
+        { userData && userData.role === 'admin' && (
+                    <button className="delete-btn" onClick={() => deleteItem(item._id)}>Delete Item</button>
                     )}
 
 
