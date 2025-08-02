@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "../css/AddItem.css";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 function AddItemForm() {
     const [formData, setFormData] = useState({
@@ -11,6 +13,7 @@ function AddItemForm() {
         condition: "",
         description: ""
     });
+    const navigate = useNavigate();
 
     const [image, setImage] = useState(null); // 🖼️ New image state
 
@@ -43,7 +46,9 @@ function AddItemForm() {
 
             const result = await response.json();
             if (response.ok) {
-                alert("Item added successfully!");
+                 // Redirect to home after successful submission
+                toast.success("Item added successfully!");
+                navigate("/");
                 console.log("Submitted Item:", result.item);
                 // Reset form
                 setFormData({
