@@ -54,7 +54,7 @@ const Navbar = () => {
                     <button 
                         type="button" 
                         className="add-item" 
-                        onClick={() => navigate('/add-item')}
+                        onClick={() => { userData.isAccountVerified ? navigate('/add-item'):toast.warn("Please verify your email to add items") }} 
                     >
                         Add Item
                     </button>
