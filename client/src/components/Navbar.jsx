@@ -8,9 +8,9 @@ import "../css/Navbar.css"
 
 const Navbar = () => {
     const [searchQuery, setSearchQuery] = useState("");
+    const [isClicked, setIsClicked] = useState(false);
     const navigate = useNavigate();
     const { userData, backendUrl, setUserData, setIsLoggedin } = useContext(AppContent);
-    
 
     const handleSearch = (e) => {
         e.preventDefault();
@@ -18,6 +18,7 @@ const Navbar = () => {
     };
 
     const sendVerificationOtp = async () => {
+        setIsClicked(true);
         try {
             axios.defaults.withCredentials = true;
             const { data } = await axios.post(backendUrl + '/api/auth/send-verify-otp');
@@ -50,15 +51,13 @@ const Navbar = () => {
         <div className="navbar-container">
             <div className="navbar">
                 <form onSubmit={handleSearch} className="search-form">
-                    { userData && userData.role === 'user' && (
                     <button 
                         type="button" 
                         className="add-item" 
-                        onClick={() => { userData.isAccountVerified ? navigate('/add-item'):toast.warn("Please verify your email to add items") }} 
+                        onClick={() => navigate('/add-item')}
                     >
                         Add Item
                     </button>
-                    )}
                     <input
                         type="text"
                         placeholder="Search Items..."
@@ -67,7 +66,6 @@ const Navbar = () => {
                         onChange={(e) => setSearchQuery(e.target.value.toLowerCase())}
                     />
                     <button type="submit" className="search-item">Search</button>
-                    
                 </form>
 
                 <img src={assets.logo} alt="Logo" className="navbar-logo" />
@@ -78,7 +76,7 @@ const Navbar = () => {
                         <div className="user-menu">
                             <ul className="menu-list">
                                 {!userData.isAccountVerified && (
-                                    <li onClick={sendVerificationOtp} className="menu-item">
+                                    <li onClick={sendVerificationOtp} className={`menu-item ${isClicked ? 'disabled' : ''}`}>
                                         Verify email
                                     </li>
                                 )}
