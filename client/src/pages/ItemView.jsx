@@ -26,6 +26,8 @@ const ViewItem = () => {
   if (error) return <p>{error}</p>;
   if (!item) return <p>Loading...</p>;
 
+  console.log("Fetched Item:", item.imageUrl);
+
   return (
     <div className="item-view">
       <button className="close-btn" onClick={() => navigate(-1)}>✖</button>

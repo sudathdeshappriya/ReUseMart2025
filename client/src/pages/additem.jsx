@@ -88,7 +88,11 @@ function AddItemForm() {
                 </select><br />
 
                 <input type="number" name="price" placeholder="Price (USD)" value={formData.price} onChange={handleChange} required /><br />
-                <input type="text" name="contact" placeholder="Contact Details" value={formData.contact} onChange={handleChange} required /><br />
+                <input type="text" name="contact" placeholder="Contact Number" value={formData.contact} onChange={(e) => {const value = e.target.value;
+                if (/^\d{0,10}$/.test(value)) {
+                    handleChange(e);
+                    }
+                }}pattern="\d{10}"  title="Contact number must be exactly 10 digits" required/><br/>
                 <input type="text" name="location" placeholder="Location" value={formData.location} onChange={handleChange} required /><br />
 
                 <select name="condition" value={formData.condition} onChange={handleChange} required>
