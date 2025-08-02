@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "../css/ViewItem.css"; // Assuming you have a CSS file for styling
+import { AppContent } from "../context/AppContext";
 
 const ViewItem = () => {
   const { id } = useParams(); // 🔍 extract item ID from URL
   const [item, setItem] = useState(null);
   const [error, setError] = useState(null);
+  const { userData } = useContext(AppContent)
 
   useEffect(() => {
     fetch(`http://localhost:4000/api/items/${id}`)
@@ -36,7 +38,15 @@ const ViewItem = () => {
         <p><strong className="location">Location:</strong> {item.location}</p>
         <p><strong className="condition">Condition:</strong> {item.condition}</p>
         <div className="item-actions">
-      <button className="favourite-btn" onClick={() => alert("Added to favourites!")}>Add to Favourites</button></div>
+{ userData && userData.role === 'user' ? (
+                    <button className="favourite-btn" onClick={() => alert("Added to favourites!")}>Add to Favourites</button>
+                    ):(<button className="delete-btn" onClick={() => alert("Item is deleted!")}>Delete Item</button>)}
+
+
+
+
+
+      </div>
         
       </div>
       <div className="item-description"> <h3>Description</h3> <p>{item.description}</p> </div>

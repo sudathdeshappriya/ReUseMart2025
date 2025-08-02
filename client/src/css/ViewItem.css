@@ -121,6 +121,22 @@
 
 }
 
+.delete-btn {
+  background: #fff;
+  color: #f10000;
+  border: 1px solid #600303;
+  font-size: 1rem;
+  border-radius: 4px;
+  margin-top: 20px;
+  margin-left: 60px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  width: 400px;
+  height: 40px;
+
+}
+
 .favourite-btn:hover {
   background: #f0f7ff;
 }
