@@ -8,7 +8,6 @@ import "../css/Navbar.css"
 
 const Navbar = () => {
     const [searchQuery, setSearchQuery] = useState("");
-    const [isClicked, setIsClicked] = useState(false);
     const navigate = useNavigate();
     const { userData, backendUrl, setUserData, setIsLoggedin } = useContext(AppContent);
     
@@ -19,7 +18,6 @@ const Navbar = () => {
     };
 
     const sendVerificationOtp = async () => {
-        setIsClicked(true);
         try {
             axios.defaults.withCredentials = true;
             const { data } = await axios.post(backendUrl + '/api/auth/send-verify-otp');
@@ -80,7 +78,7 @@ const Navbar = () => {
                         <div className="user-menu">
                             <ul className="menu-list">
                                 {!userData.isAccountVerified && (
-                                    <li onClick={sendVerificationOtp} className={`menu-item ${isClicked ? 'disabled' : ''}`}>
+                                    <li onClick={sendVerificationOtp} className="menu-item">
                                         Verify email
                                     </li>
                                 )}
