@@ -139,14 +139,26 @@ export const sendVerifyOtp = async (req, res) => {
 
         const otp = String(Math.floor(100000 + Math.random() * 900000));
         user.verifyOtp = otp;
-        user.verifyOtpExpireAt = Date.now() + 124 * 60 * 60 * 1000; // 1 day
+        user.verifyOtpExpireAt = Date.now() + 15 * 60 * 1000; // 15 minutes
         await user.save();
 
         const mailOptions = {
             from: process.env.SENDER_EMAIL,
             to: user.email,
             subject: "ReUseMart Account Verification",
-            text: `Your verification OTP is ${otp}. It is valid for 24 hours.`
+            text: `Hello ${user.name},
+
+We received a request to verify your email address. Please use the OTP below to complete the verification:
+
+🎯 Your Verification Code: ${otp}
+
+⏳ This code is valid for the next 15 minutes.
+For your security, do not share this code with anyone.
+
+If you didn’t request this, you can safely ignore this message.
+
+Thanks,
+The ReUseMart Team.`
         };
         await transporter.sendMail(mailOptions);
         res.json({
