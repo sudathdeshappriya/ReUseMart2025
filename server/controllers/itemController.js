@@ -4,7 +4,7 @@ import fs from 'fs';
 export const addItem = async (req, res) => {
     try {
         const { itemName, category, price, contact, location, condition, description } = req.body;
-        const imageUrl = req.file ? `${req.protocol}://${req.get("host")}/uploads/${req.file.filename}` : null;
+        const imageUrl = req.file ? `uploads/${req.file.filename}` : null;  
 
         const newItem = new Item({
             itemName,
