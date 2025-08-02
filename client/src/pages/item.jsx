@@ -13,6 +13,7 @@ function ItemCard({ item }) {
   }
 
   return (
+    
     <div className="item-container">
     <div
       className="item-card"
@@ -21,11 +22,7 @@ function ItemCard({ item }) {
     >
       <div className="item-poster">
         <img src={item.url} alt={item.title} />
-        <div className="item-overlay">
-          <button className="favourite-button" onClick={favouriteCart}>
-            +
-          </button>
-        </div>
+        
       </div>
       <div className="item-info">
         <h3>{item.title}</h3>

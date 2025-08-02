@@ -13,6 +13,8 @@ router.post('/add-item', upload.single('image'), addItem);
 
 router.get('/items', getAllItems);
 
+router.get('/fv-items', getAllItems);
+
 
 
 
