@@ -7,6 +7,7 @@ import ResetPassword from './pages/ResetPassword'
 import { ToastContainer } from 'react-toastify'
 import AddItemForm from './pages/additem'
 import ViewItem from './pages/ItemView'
+import Favourite from './pages/favourite'
 
 
 const App = () => {
@@ -20,6 +21,7 @@ const App = () => {
         <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/add-item" element={<AddItemForm />} />
         <Route path="/items/:id" element={<ViewItem />} />
+        <Route path="/favourite" element={<Favourite />} />
     
     
       </Routes>

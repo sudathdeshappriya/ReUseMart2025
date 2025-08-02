@@ -1,4 +1,5 @@
 import arrow_icon from './arrow_icon.svg'
+import star_icon from './star_icon.svg'
 import lock_icon from './lock_icon.svg'
 import logo from './logo.svg'
 import mail_icon from './mail_icon.svg'
@@ -13,5 +14,7 @@ export const assets = {
     mail_icon,
     person_icon,
     hand_wave,
-    header_img
+    header_img,
+    star_icon
+
 }
