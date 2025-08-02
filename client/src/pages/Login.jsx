@@ -14,6 +14,35 @@ const Login = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [passwordStrength, setPasswordStrength] = useState('');
+
+const checkPasswordStrength = (pwd) => {
+  let strength = '';
+
+  const strong = new RegExp(
+    '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*])[A-Za-z\\d!@#$%^&*]{8,}$'
+  );
+  const medium = new RegExp(
+    '^(?=.*[a-zA-Z])(?=.*\\d)[A-Za-z\\d]{6,}$'
+  );
+
+  if (strong.test(pwd)) {
+    strength = 'Strong';
+  } else if (medium.test(pwd)) {
+    strength = 'Medium';
+  } else {
+    strength = 'Weak';
+  }
+
+  setPasswordStrength(strength);
+};
+
+
+
+
+
+
+
 
   const onSubmitHandler = async (e) => {
     try {
@@ -23,9 +52,14 @@ const Login = () => {
       if (state === 'Sign Up') {
         const { data } = await axios.post(backendUrl + '/api/auth/register', { name, email, password });
         if (data.success) {
+          if(passwordStrength==='Strong'){
           setIsLoggedin(true);
           getUserData();
           navigate('/');
+          toast.success(data.message);
+          }else{
+            toast.error('Password must be strong')
+          }
         } else {
           toast.error(data.message);
         }
@@ -35,6 +69,7 @@ const Login = () => {
           setIsLoggedin(true);
           getUserData();
           navigate('/');
+          toast.success(data.message);
         } else {
           toast.error(data.message);
         }
@@ -82,16 +117,29 @@ const Login = () => {
               required
             />
           </div>
-          <div className="login-input">
+          <div className="login-inputx">
             <img src={assets.lock_icon} alt="lock" />
             <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Password"
-              required
-            />
+          type="password"
+          value={password}
+          onChange={(e) => {
+            setPassword(e.target.value);
+            checkPasswordStrength(e.target.value);
+          }}
+          placeholder="Password"
+          required
+        />
+        
+
           </div>
+
+          {state === 'Sign Up' && (
+          <p
+            className={`password-strength ${passwordStrength.toLowerCase()}`}
+          >
+            Password Strength: {passwordStrength}
+          </p>
+        )}
 
           <p className="forgot-password" onClick={() => navigate('/reset-password')}>
             Forgot password?
