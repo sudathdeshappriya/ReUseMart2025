@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom'
 const EmailVerify = () => {
 
   axios.defaults.withCredentials = true;
-  const {backendUrl,isLoggedin,userData, getUserData} = useContext(AppContent)
+  const {backendUrl,setIsLoggedin,isLoggedin,userData, getUserData} = useContext(AppContent)
 
   const navigate = useNavigate()
 
@@ -45,7 +45,7 @@ const EmailVerify = () => {
       if(data.success){
         toast.success(data.message)
         getUserData()
-        isLoggedin(true)
+        setIsLoggedin(true)
         navigate('/')
       }else{
         toast.error(data.message)
@@ -78,7 +78,7 @@ const EmailVerify = () => {
 
 
         </div>
-        <button className='w-full py-3 bg-gradient-to-r from-indigo-500 to-indigo-900 text-white rounded-full'>Verify email</button>
+        <button className='w-full py-3 bg-gradient-to-r from-indigo-500 to-indigo-900 text-white rounded-full cursor-pointer transition-transform duration-200 transform hover:scale-105 active:brightness-75'>Verify email</button>
 
       </form>
       
