@@ -58,7 +58,7 @@ const deleteItem = async (itemId) => {
       <div className="item-details">
         <h2>{item.itemName}</h2>
         <p><strong className="category">Category:</strong> {item.category}</p>
-        <p className="price">$ {item.price}</p>
+        <p className="price">Rs {item.price}.00</p>
         <p><strong className="contact">Contact Now:</strong> {item.contact}</p>
         <p><strong className="location">Location:</strong> {item.location}</p>
         <p><strong className="condition">Condition:</strong> {item.condition}</p>

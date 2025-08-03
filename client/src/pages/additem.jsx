@@ -87,7 +87,7 @@ function AddItemForm() {
                     <option value="Other">Other</option>
                 </select><br />
 
-                <input type="number" name="price" placeholder="Price (USD)" value={formData.price} onChange={handleChange} required /><br />
+                <input type="number" name="price" placeholder="Price (LKR)" value={formData.price} onChange={handleChange} required /><br />
                 <input type="text" name="contact" placeholder="Contact Number" value={formData.contact} onChange={(e) => {const value = e.target.value;
                 if (/^\d{0,10}$/.test(value)) {
                     handleChange(e);
