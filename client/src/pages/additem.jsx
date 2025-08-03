@@ -38,7 +38,7 @@ function AddItemForm() {
         }
 
         try {
-            const response = await fetch("http://localhost:4000/api/add-item", {
+            const response = await fetch("https://reusemart2025-1.onrender.com/api/add-item", {
     method: "POST",
     body: data,
     credentials: 'include'

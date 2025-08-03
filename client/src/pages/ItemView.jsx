@@ -12,7 +12,7 @@ const ViewItem = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`http://localhost:4000/api/items/${id}`)
+    fetch(`https://reusemart2025-1.onrender.com/api/items/${id}`)
       .then((res) => {
         if (!res.ok) throw new Error("Item not found");
         return res.json();
@@ -30,7 +30,7 @@ const ViewItem = () => {
   console.log("Fetched Item:", item.imageUrl);
 const deleteItem = async (itemId) => {
   try {
-    const response = await fetch(`http://localhost:4000/api/delete-item/${itemId}`, {
+    const response = await fetch(`https://reusemart2025-1.onrender.com/api/delete-item/${itemId}`, {
       method: "DELETE",
       credentials: 'include'
     });
@@ -53,7 +53,7 @@ const deleteItem = async (itemId) => {
     <div className="item-view">
       <button className="close-btn" onClick={() => navigate(-1)}>✖</button>
       <div className="item-image">
-        <img src={`http://localhost:4000/${item.imageUrl}`} alt={item.itemName} />
+        <img src={`https://reusemart2025-1.onrender.com/${item.imageUrl}`} alt={item.itemName} />
       </div>
       <div className="item-details">
         <h2>{item.itemName}</h2>

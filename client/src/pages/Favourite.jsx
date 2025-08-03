@@ -15,7 +15,7 @@ const Favourite = () => {
 
   // Fetch items from backend on page load
   useEffect(() => {
-    fetch("http://localhost:4000/api/fv-items")
+    fetch("https://reusemart2025-1.onrender.com/api/fv-items")
       .then((res) => res.json())
       .then((data) => {
         console.log("Fetched items:", data);
@@ -48,7 +48,7 @@ const Favourite = () => {
                 item={{
                   _id: item._id, 
                   title: item.itemName,price:item.price,
-                  url: `http://localhost:4000/${item.imageUrl}`,
+                  url: `https://reusemart2025-1.onrender.com/${item.imageUrl}`,
                 }}
               />
             ))}

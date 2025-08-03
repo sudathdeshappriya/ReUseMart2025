@@ -143,7 +143,7 @@ const Navbar = () => {
                             <ItemCard key={item._id} item={{
                   _id: item._id, 
                   title: item.itemName,price:item.price,
-                  url: `http://localhost:4000/${item.imageUrl}`,
+                  url: `https://reusemart2025-1.onrender.com/${item.imageUrl}`,
                 }} />
                         ))}
                     </div>
