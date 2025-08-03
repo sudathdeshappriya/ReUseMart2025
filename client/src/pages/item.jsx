@@ -30,7 +30,7 @@ function ItemCard({ item }) {
         <Link to={`/items/${item._id}`}></Link>
       </div>
 
-      <div className="item-price"><h2>${item.price}</h2></div>
+      <div className="item-price"><h2>Rs {item.price}.00</h2></div>
       
     </div></div>
   );
